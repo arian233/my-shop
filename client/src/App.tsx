@@ -1,22 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { Product } from "./Product";
 import Catalog from "./components/catalog/Catalog";
+import NavBar from "./components/NavBar";
+import {
+  Container,
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [mode, setMode] = useState<"light" | "dark">("dark");
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+  const theme = createTheme({
+    palette: {
+      mode,
+      background: {
+        default: mode === "light" ? "#eaeaea" : "#121212",
+      },
+    },
+  });
 
+  const handleModeChange = () => {
+    setMode(mode === "dark" ? "light" : "dark");
+  };
   return (
-    <>
-      <h1>Hi</h1>
-      <Catalog products={products} />
-    </>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <NavBar childState={mode} onChange={handleModeChange} />
+      <Container>
+        <Catalog />
+      </Container>
+    </ThemeProvider>
   );
 }
 
