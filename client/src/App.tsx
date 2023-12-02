@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import Catalog from "./components/catalog/Catalog";
 import NavBar from "./components/NavBar";
 import {
   Container,
@@ -8,6 +7,7 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState<"light" | "dark">("dark");
@@ -29,7 +29,7 @@ function App() {
       <CssBaseline />
       <NavBar childState={mode} onChange={handleModeChange} />
       <Container>
-        <Catalog />
+        <Outlet />
       </Container>
     </ThemeProvider>
   );
