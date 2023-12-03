@@ -2,7 +2,7 @@ import { Typography, Container, Grid } from "@mui/material";
 
 export default function AboutPage() {
   return (
-    <Container>
+    <Container sx={{ mt: 12 }}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant="h4" align="center" gutterBottom>
