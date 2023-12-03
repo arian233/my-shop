@@ -49,7 +49,7 @@ export default function NavBar(props: Props) {
     };
 
   return (
-    <AppBar position="static" sx={{ mb: 4 }}>
+    <AppBar position="fixed" sx={{ mb: 4 }}>
       <Toolbar
         sx={{
           display: "flex",
@@ -64,7 +64,7 @@ export default function NavBar(props: Props) {
         >
           <Typography
             component={NavLink}
-            to="/"
+            to="/catalog"
             sx={{
               color: "inherit",
               textDecoration: "none",

@@ -16,7 +16,7 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Card key={product.id} sx={{ borderRadius: "5%" }}>
+    <Card key={product.id} sx={{ borderRadius: "5%", boxShadow: 3 }}>
       <CardHeader
         sx={{ bgcolor: "none" }}
         title={product.name}
