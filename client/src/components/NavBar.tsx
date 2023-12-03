@@ -1,4 +1,7 @@
 import { ShoppingCart } from "@mui/icons-material";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+
 import {
   AppBar,
   Badge,
@@ -19,10 +22,9 @@ interface Props {
 
 export default function NavBar(props: Props) {
   const navItems = [
-    { name: "Home", path: "/" },
+    { name: "Catalog", path: "/catalog" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
-    { name: "Catalog", path: "/catalog" },
   ];
 
   const userActions = [
@@ -39,18 +41,29 @@ export default function NavBar(props: Props) {
           alignItems: "center",
         }}
       >
-        <Box display={"flex"} alignItems={"center"}>
+        <Box
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+        >
           <Typography
             component={NavLink}
             to="/"
-            sx={{ color: "inherit", textDecoration: "none", variant: "h6" }}
+            sx={{
+              color: "inherit",
+              textDecoration: "none",
+              variant: "h6",
+              mr: 2,
+            }}
           >
             My Shop
           </Typography>
+          <LightModeIcon />
           <Switch
             checked={props.childState === "dark"}
             onChange={props.onChange}
           />
+          <DarkModeIcon />
         </Box>
 
         <List sx={{ display: "flex" }}>

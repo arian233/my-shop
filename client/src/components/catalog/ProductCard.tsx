@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Product } from "../../Product";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: Product;
@@ -15,7 +16,7 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Card key={product.id}>
+    <Card key={product.id} sx={{ borderRadius: "5%" }}>
       <CardHeader
         sx={{ bgcolor: "none" }}
         title={product.name}
@@ -31,14 +32,16 @@ export default function ProductCard({ product }: Props) {
       />
       <CardContent>
         <Typography variant="h6" color={"primary"}>
-          Price: {product.price.toFixed(2)}
+          Price: {(product.price / 100).toFixed(2)} CAD
         </Typography>
         <Typography variant="body1">
           {product.brand} / {product.type}
         </Typography>
       </CardContent>
       <Button color="primary">ADD To CART</Button>
-      <Button color="primary">VIEW</Button>
+      <Button color="primary" component={Link} to={`/catalog/${product.id}`}>
+        VIEW
+      </Button>
     </Card>
   );
 }
