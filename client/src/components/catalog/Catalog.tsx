@@ -18,7 +18,7 @@ export default function Catalog() {
       <h1>Catalog</h1>
       <Grid container spacing={4} columns={12}>
         {products.map((product) => (
-          <Grid xs={6} md={3} justifyContent="center" key={product.id}>
+          <Grid xs={12} md={3} justifyContent="center" key={product.id}>
             <ProductCard key={product.id} product={product} />
           </Grid>
         ))}
