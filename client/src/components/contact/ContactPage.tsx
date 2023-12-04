@@ -15,8 +15,15 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!name || !email || !message) {
+      setError("Please fill in all the fields.");
+      return;
+    }
 
     fetch("https://formcarry.com/s/16fmEuNMRP", {
       method: "POST",
@@ -38,7 +45,11 @@ export default function ContactPage() {
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return (
+      <Typography variant="h4" sx={{ mt: 12, textAlign: "center" }}>
+        {error}
+      </Typography>
+    );
   }
 
   if (submitted) {
@@ -65,16 +76,20 @@ export default function ContactPage() {
       <form onSubmit={submit}>
         <FormControl>
           <TextField
+            sx={{ my: 2 }}
             label="Name"
             fullWidth
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
           <TextField
+            sx={{ mb: 2 }}
             label="Email"
             fullWidth
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <TextField
             label="Message"
@@ -83,11 +98,13 @@ export default function ContactPage() {
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            required
           />
           <Button
             variant="contained"
             color="primary"
             type="submit"
+            disabled={!emailRegex.test(email) || !name || !message}
             sx={{ mt: 4 }}
           >
             Submit
