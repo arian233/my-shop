@@ -32,7 +32,7 @@ export default function ProductDetailsPage() {
   if (!product) return <Typography variant="h2">Product not found</Typography>;
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ mt: 8 }}>
       <Grid xs={12} md={6}>
         <img
           src={product.pictureUrl}
