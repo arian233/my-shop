@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import { Product } from "../../Product";
-import axios from "axios";
 import Grid from "@mui/material/Unstable_Grid2";
 import ProductCard from "./ProductCard";
+import agent from "../../app/api/agent";
 
 export default function Catalog() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/products")
-      .then((res) => setProducts(res.data));
+    agent.Catalog.list().then((products) => setProducts(products));
   }, []);
 
   return (

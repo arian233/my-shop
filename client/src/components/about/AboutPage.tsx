@@ -1,4 +1,5 @@
-import { Typography, Container, Grid } from "@mui/material";
+import { Typography, Container, Grid, Button } from "@mui/material";
+import agent from "../../app/api/agent";
 
 export default function AboutPage() {
   return (
@@ -23,6 +24,7 @@ export default function AboutPage() {
           </Typography>
         </Grid>
       </Grid>
+      <Button onClick={() => agent.TestErrors.get400Error()}>Errors</Button>
     </Container>
   );
 }

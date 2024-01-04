@@ -6,11 +6,11 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../Product";
 import Grid from "@mui/material/Unstable_Grid2";
+import agent from "../../app/api/agent";
 
 export default function ProductDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -20,16 +20,25 @@ export default function ProductDetailsPage() {
   console.log(product);
 
   useEffect(() => {
-    console.log("productID: ", id);
-    axios
-      .get(`http://localhost:5000/api/products/${id}`)
-      .then((res) => setProduct(res.data))
-      .catch((err) => console.log(err));
-    setLoading(false);
+    id &&
+      agent.Catalog.details(parseInt(id))
+        .then((response) => setProduct(response))
+        .catch((error) => console.log(error.response))
+        .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <Typography variant="h2">Loading...</Typography>;
-  if (!product) return <Typography variant="h2">Product not found</Typography>;
+  if (loading)
+    return (
+      <Typography variant="h2" mt={8}>
+        Loading...
+      </Typography>
+    );
+  if (!product)
+    return (
+      <Typography variant="h2" mt={8}>
+        Product not found
+      </Typography>
+    );
 
   return (
     <Grid container spacing={2} sx={{ mt: 8 }}>
