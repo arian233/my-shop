@@ -8,6 +8,8 @@ import {
   createTheme,
 } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [mode, setMode] = useState<"light" | "dark">("dark");
@@ -26,6 +28,7 @@ function App() {
   };
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer position="bottom-center" theme="colored" />
       <CssBaseline />
       <NavBar childState={mode} onChange={handleModeChange} />
       <Container>
